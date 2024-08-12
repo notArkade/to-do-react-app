@@ -1,43 +1,50 @@
 import React from "react";
+import { useState } from "react";
 
-const AddTodos = () => {
+export const AddTodos = ({addTodo}) => {
+
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+ 
+  const submit = (e)=> {
+    e.preventDefault();
+    if(!title || !desc) {
+      alert("Title or description cannot be empty")
+    }
+    addTodo(title,desc);
+  }
+
   return (
-    <div className="container">
-        <h3>Add a Todo</h3>
-      <form>
+    <div className="container my-3">
+        <h3 className="text-center">Add To-do</h3>
+      <form onSubmit={submit}>
         <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">
-            Email address
+          <label htmlFor="title" className="form-label">
+            Add a to-do
           </label>
           <input
-            type="email"
+            type="text"
+            value={title}
             className="form-control"
-            id="exampleInputEmail1"
+            id="title"
             aria-describedby="emailHelp"
+            placeholder="What do you need to do?"
+            onChange={(e)=>setTitle(e.target.value)}
           />
-          <div id="emailHelp" className="form-text">
-            We'll never share your email with anyone else.
-          </div>
+          
         </div>
         <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
-            Password
+          <label htmlFor="desc" className="form-label">
+            Add description
           </label>
           <input
-            type="password"
+            type="text"
+            value={desc}
             className="form-control"
-            id="exampleInputPassword1"
+            id="desc"
+            placeholder="Describe what you need to do."
+            onChange={(e)=>setDesc(e.target.value)}
           />
-        </div>
-        <div className="mb-3 form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="exampleCheck1"
-          />
-          <label className="form-check-label" htmlFor="exampleCheck1">
-            Check me out
-          </label>
         </div>
         <button type="submit" className="btn btn-primary">
           Submit
