@@ -1,22 +1,24 @@
 import React from "react";
 import { useState } from "react";
 
-export const AddTodos = ({addTodo}) => {
-
+export const AddTodos = ({ addTodo }) => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
- 
-  const submit = (e)=> {
+
+  const submit = (e) => {
     e.preventDefault();
-    if(!title || !desc) {
-      alert("Title or description cannot be empty")
+    if (!title || !desc) {
+      alert("Title or description cannot be empty");
+    } else {
+      addTodo(title, desc);
+      setTitle("");
+      setDesc("");
     }
-    addTodo(title,desc);
-  }
+  };
 
   return (
     <div className="container my-3">
-        <h3 className="text-center">Add To-do</h3>
+      <h3 className="text-center">Add To-do</h3>
       <form onSubmit={submit}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
@@ -29,9 +31,8 @@ export const AddTodos = ({addTodo}) => {
             id="title"
             aria-describedby="emailHelp"
             placeholder="What do you need to do?"
-            onChange={(e)=>setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
           />
-          
         </div>
         <div className="mb-3">
           <label htmlFor="desc" className="form-label">
@@ -43,7 +44,7 @@ export const AddTodos = ({addTodo}) => {
             className="form-control"
             id="desc"
             placeholder="Describe what you need to do."
-            onChange={(e)=>setDesc(e.target.value)}
+            onChange={(e) => setDesc(e.target.value)}
           />
         </div>
         <button type="submit" className="btn btn-primary">

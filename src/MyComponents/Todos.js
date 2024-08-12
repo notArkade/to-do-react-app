@@ -11,9 +11,7 @@ export const Todos = (props) => {
       {props.todos.length===0? <p className="p-2 text-center fs-5 bg-danger text-danger-emphasis border border-danger rounded-3">No to-do's to display yet</p>:
       props.todos.map((todo)=>{
         return (
-        <>
-        <TodoList todo={todo} key={todo.sno} onDelete={props.onDelete}/> <hr/>
-        </>
+        <TodoList todo={todo} key={todo.sno} onDelete={props.onDelete}/>
         )
       })
       }
